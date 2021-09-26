@@ -166,42 +166,40 @@ Sending some of the balance of '0006' tBTC, i.e. '0002' tBTC to "Address Two":
 
 ![Oops, image not available](./Screenshots/bitcoin_addresses_2.png "Checking post-send balances")  
 
-X
-
 ### **Bitcoin** Transaction Exploration
 I have used the Bitcoin Testnet explorer available [here](https://tbtc.bitaps.com/), to show the transaction as demonstrated above.
 
-Checking the Bitcoin Explorer for "Account Two", we see the transaction of '0002' coming through for the 2nd account's address (mwVKYAXirjhxqaonBnfS3Ryn5ctt7KjoXy): -
+Checking the Bitcoin Explorer for "Account Two", we see the transaction of 0.0002 tBTC coming through for the 2nd account's address, i.e. mwVKYAXirjhxqaonBnfS3Ryn5ctt7KjoXy: -
 
 ![Oops, image not available](./Screenshots/bitcoin_addresses_3.png "Checking explorer for specific transaction")  
 
-Looking at the transaction itself, we can see that the fee was rather high and does not leave much available for "account one" as well as the transactions that funded the original address from the testnet faucet: -
+Looking at the transaction itself, we can see that the fee was rather high and does not leave much available for "Account One".  One can also see the transactions that funded the original address from the testnet faucet, totalling 0.0006 tBTC: -
 
 ![Oops, image not available](./Screenshots/bitcoin_addresses_4.png "Checking explorer for effects on both accounts for transaction")  
 
 
 ### **Ethereum** Preparation
 The example for Ethereum is much the same, but a different network is used, along with a different blockchain explorer.  
-To prepare for this demo, I need to prepare things a little differently.  In terms of funding the test-addresses, this has already been done with an Ethereum Proof of Authority (PoA) network set up in a separate project.  Please see the following repository for how that was set up: https://github.com/aylwarda/blockchain-homework
 
-Checking that accounts are funded:
-> Note: the address and private key
+To prepare for this demo, I need to prepare things a little differently.  In terms of funding the test-addresses, this has already been done with an Ethereum Proof of Authority (PoA) network set up in a separate project.  Please see the following repository for how that was done: https://github.com/aylwarda/blockchain-homework.  One does not have to do it this way, but the accounts created within that network have virtually infinite ETH and therefore no need for any funding from test faucets.
+
+Checking that accounts are funded, noting the address, private key and the *insane balance*!
 
 ![Oops, image not available](./Screenshots/ethereum_addresses_1.png "Checking ETH account is funded")  
 
 Using `wallet`, I add this address as an object which I can use as part of this demo.  I do that by executing `eth_account_fou = priv_key_to_account(ETH,<private-key-here>)`.  "Account Four" is created, as previously explained, 3 accounts are populated within the `coins` dictionary object, so this is the fourth.  
-> Note: the addresses are checked ... one with ***a lot*** of test-ETH and the other with 0 ETH.
+> Note: the addresses are checked ... one with ***a lot*** of test-ETH and the other with 0 ETH. Dividing by `gwei` renders the correct value of ETH.
 
 ![Oops, image not available](./Screenshots/ethereum_addresses_2.png "Adding account and checking all balances")  
 
 ### **Ethereum** Transaction Exploration
-Now, for the actual transaction.  Using `wallet` I send 125000 ETH to "Account One" which has been newly created as part of this demo, and this has been done from an account which already existed as part of an older project, i.e. "Account Four" created above.
-> Note: the transaction hash, address, amount.  
-> Note also, that using MyCrypto as the blockchain explorer and searching on the transaction, the details are shown as expected.  
+Now, for the actual transaction.  Using `wallet` I send 125000 ETH to "Account One" which has been newly created as part of this demo. This has been done from the source of an account which already existed as part of an older project, i.e. "Account Four" created above.
+> Note in the image below, the transaction hash, address and amount.  
+> Note also, that using MyCrypto as the blockchain explorer and searching with the transaction hash (from above), the details reveal themselves as expected.  
 
 ![Oops, image not available](./Screenshots/ethereum_addresses_4.png "Transaction being mined")  
 
-> Note: the transaction being mined as can be seen in the logs as captured.  
+> Note: the transaction being mined, as can be seen in the logs as captured.  
 > Note too, that the transaction hash and address are as above.  
 
 ![Oops, image not available](./Screenshots/ethereum_addresses_3.png "Transaction being mined")  

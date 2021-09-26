@@ -9,6 +9,7 @@ from web3 import Web3
 from web3.middleware import geth_poa_middleware
 from eth_account import Account
 from bit import wif_to_key, PrivateKeyTestnet
+from bit.network import NetworkAPI
 
 # For ETH, setting up access to the local network
 w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:8545"))
@@ -19,6 +20,8 @@ gwei = 1000000000*1000000000
 load_dotenv(find_dotenv())
 mnemonic=os.getenv("mnemonic")
 
+# Functions ...
+#
 # Create a function called `derive_wallets`
 def derive_wallets(mnemonic, coin, numderive):
     command = 'php ./derive -g --mnemonic="'+mnemonic+'" --numderive='+numderive+' --coin='+coin+' --format=json'
@@ -27,12 +30,6 @@ def derive_wallets(mnemonic, coin, numderive):
     output, err = p.communicate()
     p_status = p.wait()
     return json.loads(output)
-
-# Create a dictionary object called coins to store the output from `derive_wallets`.
-numderive = "3"
-coins = {}
-coins[BTCTEST] = derive_wallets(mnemonic,BTCTEST,numderive)
-coins[ETH] = derive_wallets(mnemonic,ETH,numderive)
 
 # Create a function called `priv_key_to_account` that converts privkey strings to account objects.
 def priv_key_to_account(coin, priv_key):
@@ -70,8 +67,15 @@ def send_tx(coin, account, to_add, amount):
     # Based on coin, use chain-compatible signing and sending
     if coin == "eth":
         signed_tx = account.sign_transaction(raw_tx)
-        return w3.eth.sendRawTransaction(signed_tx.rawTransaction)
+        txn = w3.eth.sendRawTransaction(signed_tx.rawTransaction)
     elif coin == "btc-test" or coin == "btc":
         signed_tx = account.sign_transaction(raw_tx)
-        return NetworkAPI.broadcast_tx_testnet(signed_tx)
+        txn = NetworkAPI.broadcast_tx_testnet(signed_tx)
+    return txn
 
+# Main ...
+#
+# Create a dictionary object called coins to store the output from `derive_wallets`.
+# Note: coin and numderive are set up within constants.py
+coins[BTCTEST] = derive_wallets(mnemonic,BTCTEST,numderive)
+coins[ETH] = derive_wallets(mnemonic,ETH,numderive)

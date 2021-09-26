@@ -181,23 +181,43 @@ Looking at the transaction itself, we can see that the fee was rather high and d
 
 
 ### **Ethereum** Preparation
-X
+The example for Ethereum is much the same, but a different network is used, along with a different blockchain explorer.  
+To prepare for this demo, I need to prepare things a little differently.  In terms of funding the test-addresses, this has already been done with an Ethereum Proof of Authority (PoA) network set up in a separate project.  Please see the following repository for how that was set up: https://github.com/aylwarda/blockchain-homework
+
+Checking that accounts are funded:
+> Note: the address and private key
+
+![Oops, image not available](./Screenshots/ethereum_addresses_1.png "Checking ETH account is funded")  
+
+Using `wallet`, I add this address as an object which I can use as part of this demo.  I do that by executing `eth_account_fou = priv_key_to_account(ETH,<private-key-here>)`.  "Account Four" is created, as previously explained, 3 accounts are populated within the `coins` dictionary object, so this is the fourth.  
+> Note: the addresses are checked ... one with ***a lot*** of test-ETH and the other with 0 ETH.
+
+![Oops, image not available](./Screenshots/ethereum_addresses_2.png "Adding account and checking all balances")  
 
 ### **Ethereum** Transaction Exploration
-X
+Now, for the actual transaction.  Using `wallet` I send 125000 ETH to "Account One" which has been newly created as part of this demo, and this has been done from an account which already existed as part of an older project, i.e. "Account Four" created above.
+> Note: the transaction hash, address, amount.  
+> Note also, that using MyCrypto as the blockchain explorer and searching on the transaction, the details are shown as expected.  
 
+![Oops, image not available](./Screenshots/ethereum_addresses_4.png "Transaction being mined")  
 
+> Note: the transaction being mined as can be seen in the logs as captured.  
+> Note too, that the transaction hash and address are as above.  
 
-*** NOTES section
+![Oops, image not available](./Screenshots/ethereum_addresses_3.png "Transaction being mined")  
 
-- Include test transaction screenshots along with the code that sends them, pairing the s'shot with the code
+## Booyakasha!
+With that, I hope the demo of `wallet.py` has met with your expectations :)
 
-
-## Blah
-Blah
+### To do
+There are a number of additions to this project that would help with making it better; some ideas are: -
+- Persisting the addresses for all requested coins automatically
+- Include encryption for that persistence
+- Adding support beyond just ETH and BTC
+- Adding get_balance for ETH and include the converstion from gwei to ETH.
 
 # Acknowledgements and References
-- Used bit library ... link here
-- used web3.py library ... link here
-- Used hd-wallet-derive, including the repository wihin my own.  The instructions as to where to clone hd-wallet-derive and applicable licence info is available [here](https://github.com/dan-da/hd-wallet-derive).
+- For this project, I used the `bit` library as explained above; url [here](https://ofek.dev/bit/guide/intro.html)
+- Web3.py has also been used as explained above; similarly, url found [here](https://web3py.readthedocs.io/en/stable/)
+- I've also used hd-wallet-derive, including the repository wihin my own.  The instructions as to where to clone hd-wallet-derive and applicable licence info is available [here](https://github.com/dan-da/hd-wallet-derive).
 - Trinity College is the organisation that has provided training for accomplishing this demo (as part of a Monash University Bootcamp)

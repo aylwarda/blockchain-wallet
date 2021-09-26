@@ -53,7 +53,7 @@ def create_tx(coin, account, to_add, amount):
             "gasPrice": w3.eth.gasPrice,
             "gas": w3.eth.estimateGas({"from": account.address, "to": to_add, "value": amount}),
             "nonce": w3.eth.getTransactionCount(account.address),
-            "chainID": w3.eth.chainId,
+            #"chainID": w3.eth.chainId,
         }
     elif coin == "btc-test" or coin == "btc":
         # Create list for "prepare_transaction" then return the txn.
